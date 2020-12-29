@@ -12,7 +12,6 @@ import {
 } from "@coreui/react";
 
 import axios from "axios";
-import GeneratedTag from "../childcomponents/GeneratedTag";
 
 const TagGeneration = () => {
 
