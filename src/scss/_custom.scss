@@ -1,0 +1,256 @@
+// Here you can add other styles
+body {
+    background-color: black !important;
+}
+
+.loadingspinner {
+    margin-top: 10% !important !important; 
+}
+
+.c-app.c-dark-theme {
+    --primary: #4638c2 !important;
+    --secondary: #4c4f54 !important;
+    --success: #45a164 !important;
+    --info: #4799eb !important;
+    --warning: #e1a82d !important;
+    --danger: #d16767 !important;
+    --light: #20202a !important;
+    --dark: #181924 !important;
+}
+
+.recommend {
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.recommendselect {
+    border-radius: 0px !important;
+}
+
+.recommendinputleft {
+    border-radius: 0px !important;
+}
+.recommendinputright {
+    border-radius: 0px !important;
+}
+
+
+.recommendationcard {
+    border-radius: 0px !important;
+    margin: 0px !important;
+}
+
+.chartjs-render-monitor {
+    height: 360px !important;
+}
+
+.c-sidebar-brand {
+    background-color: white !important;
+}
+
+
+
+
+.Neon {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #494949;
+  position: relative;
+  
+
+}
+.Neon * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Neon-input-dragDrop {
+  display: block;
+  width: 343px;
+  margin: 0 auto 25px auto;
+  padding: 25px;
+  color: #8d9499;
+  color: #97A1A8;
+  background: #fff;
+  border: 2px dashed #C8CBCE;
+  text-align: center;
+  -webkit-transition: box-shadow 0.3s, border-color 0.3s;
+  -moz-transition: box-shadow 0.3s, border-color 0.3s;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.Neon-input-dragDrop .Neon-input-icon {
+  font-size: 48px;
+  margin-top: -10px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.Neon-input-text h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.Neon-input-text span {
+  font-size: 12px;
+}
+.Neon-input-choose-btn.blue {
+  color: #008BFF;
+  border: 1px solid #008BFF;
+}
+.Neon-input-choose-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8d9496;
+  border-radius: 3px;
+  border: 1px solid #c6c6c6;
+  vertical-align: middle;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.05);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+
+
+.removableitem {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  background-color: gray;
+  color: white!important;
+}
+
+
+
+.x {
+  position: relative;
+  top: -7px;
+  left: 3px;
+  margin-top: 0;
+  font-size: 13px;
+}
+
+.searchbutton {
+  width: 100%!important;
+  margin-bottom: 30px;
+}
+
+
+.tablerow {
+  background-color: white !important;
+}
+
+/* Gallery */
+
+div.gallery {
+    border: 1px solid #ccc !important;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777 !important;
+  }
+  
+  div.gallery img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  div.desc {
+    padding: 15px !important;
+    text-align: center !important;
+  }
+  
+  * {
+    box-sizing: border-box !important;
+  }
+
+  
+  
+  .responsive {
+    padding: 0 3px !important;
+    display: inline-block !important;
+    width: 19.99999% !important;
+  }
+
+  .test {
+    text-align: center !important;
+}
+  
+  @media only screen and (max-width: 700px) {
+    .responsive {
+      width: 49.99999% !important;
+      margin: 6px 0 !important;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .responsive {
+      width: 50% !important;
+    }
+  }
+  
+  .clearfix:after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+  }
+
+
+  .imageplaceholder {
+      
+  }
+
+
+  .displayimage {
+      border: 2px solid gray;
+      height: auto;
+      width: auto;
+      max-height: 100% !important;
+      max-width: 100%;
+      object-fit: cover;
+  }
+
+  .generatebutton {
+      text-align: left;
+      width: 100%;
+  }
+
+  .empty {
+      background-color: rgb(194, 193, 193);
+      min-height: 100%;
+      position: relative;
+  }
+
+  .bottom {
+        position: absolute;
+        bottom: 0;
+  }
+
+  .taggroupings {
+      padding-top: 7%;
+      padding-left: 3%;
+      padding-right: 3%;
+      padding-bottom: 5%;
+  }
+  
+
+  .generatedtags {
+    padding-top: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 5%;
+      border-top: 2px solid black;
+  }
+
+
+  .buttongroup {
+      max-width: 100%;
+  }
