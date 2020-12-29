@@ -19,10 +19,18 @@ import { useHistory } from "react-router-dom";
 // sidebar nav config
 import navigation from './_nav'
 
+import {handleLogout} from '../utils/auth'
+
+
 const TheSidebar = () => {
+  const history = useHistory();
   const dispatch = useDispatch()
   const show = useSelector(state => state.sidebarShow)
-  const history = useHistory();
+
+  function logout() {
+    handleLogout()
+    history.push('/login')
+  }
 
 
   return (
@@ -49,6 +57,9 @@ const TheSidebar = () => {
             CSidebarNavTitle
           }}
         />
+
+<CButton onClick={logout} style={{ marginTop: "20px", textAlign: "left", color: 'white'}}><CIcon name='cil-user'></CIcon> Sign Out</CButton>
+
 
       </CSidebarNav>
 

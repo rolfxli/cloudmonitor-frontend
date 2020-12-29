@@ -21,7 +21,7 @@ import axios from "axios";
 import {handleLogin} from '../../../utils/auth'
 
 
-const Login = () => {
+const Signup = () => {
   
   const history = useHistory();
   
@@ -29,14 +29,14 @@ const Login = () => {
     email: "",
     password: ""
   }
-  const [logininfo, setLogininfo] = useState(initiallogin)
+  const [signupinfo, setsignupinfo] = useState(initiallogin)
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false)
 
   function handleEvent(event) {
     setError("")
     const { name, value } = event.target
-    setLogininfo((preState) => ({
+    setsignupinfo((preState) => ({
       ...preState,
       [name]: value,
     }));
@@ -45,11 +45,11 @@ const Login = () => {
   async function handleSubmit() {
     setError("")
     setLoading(true)
-    if (logininfo.email !== "" && logininfo.password != "") {
-      const url = 'http://127.0.0.1:5000/users/login'
+    if (signupinfo.email !== "" && signupinfo.password != "") {
+      const url = 'http://127.0.0.1:5000/users/signup'
       const payload = {
-        "email": logininfo.email,
-        "password": logininfo.password
+        "email": signupinfo.email,
+        "password": signupinfo.password
       }
       try {
         var result = (await axios.post(url, payload)).data
@@ -57,7 +57,7 @@ const Login = () => {
         history.push('/dashboard')
       }
       catch(err) {
-        setError("Invalid username/password")
+        setError("Account already exists")
       }
       finally {
         setLoading(false)
@@ -74,9 +74,8 @@ const Login = () => {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h2>Login to view Dashboard</h2>
+                    <h2>Sign Up for an Account</h2>
                     <br></br>
-                    Client Token
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
@@ -88,7 +87,7 @@ const Login = () => {
                         name="email"
                         placeholder="Email"
                         onChange={handleEvent}
-                        value={logininfo.email}
+                        value={signupinfo.email}
                       />
 
                     </CInputGroup>
@@ -99,7 +98,7 @@ const Login = () => {
                         placeholder="Password"
                         autoComplete="username"
                         onChange={handleEvent}
-                        value={logininfo.password}
+                        value={signupinfo.password}
                       />
                     </CInputGroup>
                     <CButton
@@ -138,4 +137,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
