@@ -53,7 +53,7 @@ const Login = () => {
       }
       try {
         var result = (await axios.post(url, payload)).data
-        handleLogin(result.token)
+        handleLogin(result.token, result.userid, result.email)
         history.push('/dashboard')
       }
       catch(err) {
