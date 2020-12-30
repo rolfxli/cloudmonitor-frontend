@@ -130,7 +130,7 @@ const TargetDetails = () => {
     if (event.error === false) {
       setTarget((preState) => ({
         ...preState,
-        headers: event.json,
+        requestheaders: event.json,
       }));
       setValidity((preState) => ({
         ...preState,
@@ -145,7 +145,9 @@ const TargetDetails = () => {
       body: false,
     }));
 
-    if (event.error === false) {
+    console.log(event)
+
+    if (event.error === false || event.error === null || typeof(event.error) === "undefined") {
       setTarget((preState) => ({
         ...preState,
         requestbody: event.json,
@@ -185,10 +187,25 @@ const TargetDetails = () => {
       const payload = {
         link: target.link,
         testtype: "API Test",
-        requestheaders: JSON.stringify(target.headers),
-        requestbody: JSON.stringify(target.requestbody),
         requesttype: target.requesttype,
       };
+
+      if (target.requestheaders === "" || target.requestheaders === "\"\"") {
+        payload.requestheaders = "";
+      } else {
+        payload.requestheaders = JSON.stringify(target.requestheaders);
+      }
+
+      if (target.requestbody === "" || target.requestbody === "\"\"") {
+        payload.requestbody = "";
+      } else {
+        payload.requestbody = JSON.stringify(target.requestbody);
+      }
+
+
+      console.log(target)
+      console.log(payload)
+
       try {
         await axios.put(url, payload);
       } catch (err) {
