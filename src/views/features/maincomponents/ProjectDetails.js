@@ -49,10 +49,13 @@ const ProjectDetails = () => {
   const history = useHistory();
 
   function getColorfromStatus(status) {
-    if (status === "SUCCESS") {
+    if (status === null) {
+        return 'warning'
+    }
+    else if (status === "SUCCESS") {
       return "success";
     } else {
-      return "warning";
+      return "danger";
     }
   }
 
@@ -66,6 +69,9 @@ const ProjectDetails = () => {
   }
 
   function calculateAverageUptime(targets) {
+      if (targets.length ===0) {
+          return 0;
+      }
       let sumUptime = 0
       for (let i = 0; i < targets.length; i++) {
         sumUptime += calculateUptime(targets[i].numsuccess, targets[i].numfailure)
@@ -88,6 +94,20 @@ const ProjectDetails = () => {
       .catch((err) => {
         console.error(err)
       });
+  }
+
+  function closemodal() {
+      setVisible(false)
+  }
+
+  function addnewtarget(newtarget) {
+      let newtargetarray = [...targets, newtarget]
+      newtargetarray.sort(function(a, b) {
+        return calculateUptime(a.numsuccess, a.numfailure) - calculateUptime(b.numsuccess, b.numfailure)
+    });
+
+    setTargets(newtargetarray)
+
   }
 
   useEffect(() => {
@@ -153,9 +173,9 @@ const ProjectDetails = () => {
 
         
 
-      <CContainer>
+      <CContainer style={{marginBottom: "30px"}}>
           <div>
-          <AddTarget visible={visible}></AddTarget>
+          <AddTarget visible={visible} projectid={projectid} closemodal={closemodal} addnewtarget={addnewtarget}></AddTarget>
           </div>
           <center>
               <h2>Details for {project.projectname}</h2>
@@ -197,7 +217,7 @@ const ProjectDetails = () => {
           
 
         {targets.map((target) => (
-            <div className="individualproject">
+            <div className="individualproject" onClick={() => history.push(`/targets/${target.urlid}`)}>
               <div className="floatleft">
                 <h5>{target.link}</h5>
               </div>
@@ -222,7 +242,7 @@ const ProjectDetails = () => {
                     className="statusbutton"
                     color={getColorfromStatus(target.mostrecentstatus)}
                   >
-                    {target.mostrecentstatus}
+                    {target.mostrecentstatus === null ? "NONE" : target.mostrecentstatus}
                   </CButton>
                 </div>
 

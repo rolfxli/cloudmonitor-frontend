@@ -25,11 +25,14 @@ import cookie from 'js-cookie'
 
 import CIcon from '@coreui/icons-react'
 import { freeSet } from "@coreui/icons";
+import { useHistory } from 'react-router-dom'
 
 const Dashboard = () => {
   // initial state with array of project information
   let initialProjects = [];
   let initialNewProjectName = "";
+
+  const history = useHistory()
 
   // initialize state variables to be empty array of projects
   // projects: array of {'name', 'mostRecentStatus'}
@@ -178,7 +181,7 @@ const Dashboard = () => {
         <div className='projectDashboardList'>
           {projects.map((project) => 
           <>
-              <div className='individualproject'>
+              <div className='individualproject' onClick={() => history.push(`/projects/${project.projectid}`)}>
                 <div className='floatleft'>
                   <h5>{project.projectname}</h5>
                   <h6 className='projectinfodesc'>Number of APIs: {project.numberurls}</h6>
