@@ -101,7 +101,7 @@ const Dashboard = () => {
     }
   }
 
-  function deleteProject(projectid) {
+  function deleteProject(event, projectid) {
     const token = cookie.get('token')
     // delete the project
     axios.delete(`http://127.0.0.1:5000/projects/${projectid}?token=${token}`)
@@ -115,6 +115,7 @@ const Dashboard = () => {
     .catch((err) => {
       console.error(err)
     });
+    event.stopPropagation()
   }
 
   function expandProject(projectid) {
@@ -130,14 +131,13 @@ const Dashboard = () => {
   
   return (
     <>
-      <div>
+      <div style={{marginBottom: "30px"}}>
         <div className='projectDashboardHeader'>
           <div className='floatright'>
             <CButton
               onClick={toggle}
               color="primary"
-              className="px-4"
-            >Add Project</CButton>
+            ><b>Create Project</b></CButton>
 
             <CModal
               show={modal}
@@ -187,10 +187,8 @@ const Dashboard = () => {
                   <h6 className='projectinfodesc'>Number of APIs: {project.numberurls}</h6>
                 </div>
                 <div className="floatright">
-                    <CButton onClick={() => expandProject(project.projectid)} shape='pill' variant='outline' color='warning'>
-                    </CButton>
-                    {'   '}
-                    <CButton onClick={() => deleteProject(project.projectid)} shape='pill' variant='outline' color='warning'>
+                    
+                    <CButton onClick={(e) => deleteProject(e, project.projectid)} shape='pill' variant='outline' color='warning'>
                       <CIcon style={{ color:"red",marginBottom: "4px"}} content={freeSet.cilTrash}></CIcon>
                     </CButton>
                 </div>
