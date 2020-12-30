@@ -28,7 +28,6 @@ import CIcon from '@coreui/icons-react'
 const Dashboard = () => {
   // initial state with array of project information
   let initialProjects = [];
-
   let initialNewProjectName = "";
 
   // initialize state variables to be empty array of projects
@@ -46,6 +45,10 @@ const Dashboard = () => {
 
   
   useEffect(() => {
+    getProjects();
+  }, []);
+
+  async function getProjects() {
     var token = cookie.get('token')
     var userid = cookie.get('userid')
     
@@ -65,12 +68,14 @@ const Dashboard = () => {
       .catch((errors) => {
         console.error(errors);
       });
-  }, []);
+  }
 
   async function addProject() {
     console.log(newProjectName)
+    var token = cookie.get('token')
+    var userid = cookie.get('userid')
     if (newProjectName != "") {
-      const url = 'http://127.0.0.1:5000//users/${userid}/projects?token=${token}'
+      const url = `http://127.0.0.1:5000/users/${userid}/projects?token=${token}`
       const payload = {
         "projectname": newProjectName
       }
@@ -78,10 +83,17 @@ const Dashboard = () => {
         .all([
           axios.post(url, payload)
         ])
-        .then()
+        .then(
+          axios.spread(() => {
+            getProjects()
+          }),
+        )
         .catch((err) => {
           console.log(err)
         })
+        .finally(
+          toggle()
+        )
     }
   }
 
