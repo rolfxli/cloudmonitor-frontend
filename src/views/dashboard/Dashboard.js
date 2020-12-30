@@ -24,6 +24,7 @@ import MainChartExample from '../charts/MainChartExample.js'
 import cookie from 'js-cookie'
 
 import CIcon from '@coreui/icons-react'
+import { freeSet } from "@coreui/icons";
 
 const Dashboard = () => {
   // initial state with array of project information
@@ -97,6 +98,22 @@ const Dashboard = () => {
     }
   }
 
+  function deleteProject(projectid) {
+    const token = cookie.get('token')
+    // delete the project
+    axios.delete(`http://127.0.0.1:5000/projects/${projectid}?token=${token}`)
+    .then(
+      setProjects(projects.filter(
+          function(project) { 
+              return project.projectid !== projectid 
+          }
+      ))
+    )
+    .catch((err) => {
+      console.error(err)
+    });
+  }
+
   function handleEvent(event) {
     setError("")
     const { value } = event.target
@@ -149,16 +166,6 @@ const Dashboard = () => {
                   </CRow>
                 </CForm>
               </CModalBody>
-              {/* <CModalFooter>
-                <CButton 
-                  color="primary"
-                  onClick={addProject}
-                >Add Project</CButton>{' '}
-                <CButton
-                  color="secondary"
-                  onClick={toggle}
-                >Cancel</CButton>
-              </CModalFooter> */}
             </CModal>
           </div>
           <h1>Projects</h1>
@@ -170,12 +177,13 @@ const Dashboard = () => {
               <div className='individualproject'>
                 <div className='floatleft'>
                   <h5>{project.projectname}</h5>
+                  <h6 className='projectinfodesc'>Number of APIs: {project.numberurls}</h6>
                 </div>
-
-                <div className='floatright'>
-                  <h6 className='projectinfodesc'>URL Count</h6>
-                  <h6 align='right'>{project.numberurls}</h6>
-                </div>
+                <div className="floatright">
+                    <CButton onClick={() => deleteProject(project.projectid)} shape='pill' variant='outline' color='warning'>
+                      <CIcon style={{ color:"red",marginBottom: "4px"}} content={freeSet.cilTrash}></CIcon>
+                    </CButton>
+                  </div>
                                                 
               </div>
             </>
