@@ -114,6 +114,10 @@ const Dashboard = () => {
     });
   }
 
+  function expandProject(projectid) {
+
+  }
+
   function handleEvent(event) {
     setError("")
     const { value } = event.target
@@ -180,10 +184,13 @@ const Dashboard = () => {
                   <h6 className='projectinfodesc'>Number of APIs: {project.numberurls}</h6>
                 </div>
                 <div className="floatright">
+                    <CButton onClick={() => expandProject(project.projectid)} shape='pill' variant='outline' color='warning'>
+                    </CButton>
+                    {'   '}
                     <CButton onClick={() => deleteProject(project.projectid)} shape='pill' variant='outline' color='warning'>
                       <CIcon style={{ color:"red",marginBottom: "4px"}} content={freeSet.cilTrash}></CIcon>
                     </CButton>
-                  </div>
+                </div>
                                                 
               </div>
             </>
