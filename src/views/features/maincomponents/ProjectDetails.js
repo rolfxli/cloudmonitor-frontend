@@ -125,7 +125,7 @@ const ProjectDetails = () => {
 
         // Get all targets for the project
         axios.get(
-          `http://127.0.0.1:5000/projects/urls/${projectid}?token=${token}`
+          `http://127.0.0.1:5000/projects/${projectid}/targets?token=${token}`
         ),
       ])
       .then(
@@ -226,7 +226,7 @@ const ProjectDetails = () => {
           {targets.map((target) => (
             <div
               className="individualproject"
-              onClick={() => history.push(`/targets/${target.urlid}`)}
+              onClick={() => history.push(`/targets/${project.projectid}/${target.urlid}`)}
             >
               <div className="floatleft">
                 <h5>{target.link}</h5>

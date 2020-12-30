@@ -37,7 +37,7 @@ const Dashboard = () => {
   // initialize state variables to be empty array of projects
   // projects: array of {'name', 'mostRecentStatus'}
   const [projects, setProjects] = useState(initialProjects)
-
+  const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false)
   const [error, setError] = useState("");
   const [newProjectName, setNewProjectName] = useState(initialNewProjectName)
@@ -65,12 +65,13 @@ const Dashboard = () => {
       ])
       .then(
         axios.spread((info) => {
-          console.log(info.data)
           setProjects(info.data)
+          setLoading(false)
         })
       )
       .catch((errors) => {
         console.error(errors);
+        setLoading(false)
       });
   }
 
@@ -131,6 +132,22 @@ const Dashboard = () => {
   
   return (
     <>
+    {loading ? (
+        <center>
+          {" "}
+          <CSpinner
+            className="loadingspinner"
+            style={{
+              width: "4rem",
+              height: "4rem",
+              marginTop: "20%",
+              marginBottom: "20%",
+            }}
+            color="success"
+            variant="grow"
+          />
+        </center>
+      ) : (
       <div style={{marginBottom: "30px"}}>
         <div className='projectDashboardHeader'>
           <div className='floatright'>
@@ -181,7 +198,7 @@ const Dashboard = () => {
         <div className='projectDashboardList'>
           {projects.map((project) => 
           <>
-              <div className='individualproject' onClick={() => history.push(`/projects/${project.projectid}`)}>
+              <div className='individualprojectdashboard' onClick={() => history.push(`/projects/${project.projectid}`)}>
                 <div className='floatleft'>
                   <h5>{project.projectname}</h5>
                   <h6 className='projectinfodesc'>Number of APIs: {project.numberurls}</h6>
@@ -199,6 +216,7 @@ const Dashboard = () => {
         </div>
 
       </div>
+      )}
     </>
 
   );

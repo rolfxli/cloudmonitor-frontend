@@ -9,7 +9,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/taggeneration', name: 'TagGeneration', component: TagGeneration },
   { path: '/projects/:projectid', name: 'projectdetails', component: ProjectDetails },
-  { path: '/targets/:targetid', name: 'TargetDetails', component: TargetDetails },
+  { path: '/targets/:projectid/:targetid', name: 'TargetDetails', component: TargetDetails },
 
 ];
 

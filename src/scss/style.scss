@@ -9,17 +9,44 @@
 
 .individualproject {
     cursor: pointer;
-    background-color: white;
+    background-color: rgb(26, 25, 23) !important;
     padding: 30px;
     margin-top: 22px;
     padding-bottom: 58px;
-    -webkit-box-shadow: 0px 1px 6px 0px rgba(118,118,118,0.48); 
-    box-shadow: 0px 1px 6px 0px rgba(118,118,118,0.48);
+    -webkit-box-shadow: 0px 1px 4px 0px rgb(255, 255, 255); 
+    box-shadow: 0px 1px 4px 0px rgba(255, 255, 255, 0.863);
 }
 
-// .c-main {
-//     background-color: black !important;
-// }
+.individualprojectdashboard {
+    cursor: pointer;
+    background-color: rgb(26, 25, 23) !important;
+    padding: 30px;
+    margin-top: 22px;
+    padding-bottom: 70px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgb(255, 255, 255); 
+    box-shadow: 0px 1px 4px 0px rgba(255, 255, 255, 0.863);
+}
+
+
+
+.card {
+    background-color: rgb(26, 25, 23) !important;
+}
+
+.c-main {
+    background-color: black !important;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Nunito Sans", sans-serif !important;
+
+    color: rgb(147, 200, 209) !important;
+}
+
+.h2 {
+    color: rgb(147, 200, 209) !important;
+    
+}
 
 .floatleft {
     float: left;
@@ -35,10 +62,15 @@
 }
 
 .projectinfo {
+    color: rgb(147, 200, 209) !important;
+
     font-weight: 500;
-    color: rgb(25, 62, 228);
     font-size: 15px;
     margin-top: 8px;
+}
+
+.projectinfodesc {
+    color: rgb(93, 124, 129) !important;
 }
 
 .headerleft {
@@ -46,4 +78,9 @@
 }
 .headerright {
     float:right;
+}
+
+
+.chart-wrapper {
+    background-color: white !important;
 }
