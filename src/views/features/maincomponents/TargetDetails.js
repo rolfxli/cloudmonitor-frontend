@@ -26,10 +26,10 @@ const TargetDetails = () => {
 
   const [responseHistory, setResponseHistory] = useState([])
   const [responses, setResponses] = useState([])
+  const [timeStamps, setTimeStamps] = useState([])
 
   useEffect(() => {
     const token = cookie.get('token')
-    //console.log(targetid)
     var url = `http://127.0.0.1:5000/targets/responses/${targetid}?token=${token}`
 
     axios.all(
@@ -39,10 +39,7 @@ const TargetDetails = () => {
     ).then(
       axios.spread((res) => {
         setResponseHistory(res.data)
-        console.log(res.data)
-        console.log(responseHistory)
-        filterResponseTimes()
-        //console.log(responses)
+        filterResponseTimes(res.data)
       })
     ).catch((err) => {
       console.log(err)
@@ -50,15 +47,16 @@ const TargetDetails = () => {
   }, [])
 
   // set the ping times
-  function filterResponseTimes() {
-    var responseCount = responseHistory.length;
-    console.log(responseHistory)
+  function filterResponseTimes(data) {
+    var responseCount = data.length;
     var res = [];
+    var timeStamps = []
     for (let i = 0; i < responseCount; ++i) {
-      //console.log(responseHistory[i]['responsetime'])
-      res.append(responseHistory[i]['responsetime']);
+      res.push(data[i]['responsetime']);
+      timeStamps.push(data[i]['timestamp']);
     }
     setResponses(res);
+    setTimeStamps(timeStamps);
   }
 
   const options = {
@@ -70,10 +68,10 @@ const TargetDetails = () => {
   }
 
   const responseTimes = {
-    labels: [],
+    labels: timeStamps,
     datasets: [
       {
-        label: 'Response Times',
+        label: "Response Time (ms)",
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
