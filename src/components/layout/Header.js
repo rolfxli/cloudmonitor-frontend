@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
+import { Redirect, useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -34,6 +35,7 @@ const Header = ({
 
   const nav = useRef(null);
   const hamburger = useRef(null);
+  const history = useHistory();
 
   useEffect(() => {
     isActive && openMenu();
@@ -73,6 +75,14 @@ const Header = ({
     bottomOuterDivider && 'has-bottom-divider',
     className
   );
+
+  function goToLogin() {
+    history.push('/login')
+  }
+
+  function goToSignup() {
+    history.push('/signup')
+  }
 
   return (
     <header
@@ -117,10 +127,10 @@ const Header = ({
                       className="list-reset header-nav-right"
                     >
                       <li>
-                        <Link to="#0" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Sign up</Link>
+                        <Link to="#0" className="button button-primary button-wide-mobile button-sm" onClick={goToLogin}>Log in</Link>
                       </li>
                       <li>
-                        <Link to="#0" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Log in</Link>
+                        <Link to="#0" className="button button-primary button-wide-mobile button-sm" onClick={goToSignup}>Sign up</Link>
                       </li>
                     </ul>}
                 </div>

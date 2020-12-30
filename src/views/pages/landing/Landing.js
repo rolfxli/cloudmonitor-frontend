@@ -26,8 +26,8 @@ const Landing = () => {
 
   return (
     <>
-    <Header></Header>
-        <Home></Home>
+      <Header></Header>
+      <Home></Home>
     </>
   );
 };
