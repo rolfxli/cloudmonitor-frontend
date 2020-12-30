@@ -18,15 +18,17 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
+import Home from '../../Home'
+
+import Header from '../../../components/layout/Header'
 
 const Landing = () => {
 
   return (
-    <div className="c-app">
-      <CContainer>
-        Landing Page
-      </CContainer>
-    </div>
+    <>
+    <Header></Header>
+        <Home></Home>
+    </>
   );
 };
 

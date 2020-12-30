@@ -7,10 +7,5 @@ export default [
     icon: 'cil-speedometer'
   },
 
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Tag Generation API',
-    to: '/taggeneration'
-  },
 ]
 
