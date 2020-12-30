@@ -57,6 +57,9 @@ const ProjectDetails = () => {
   }
 
   function calculateUptime(success, failure) {
+      if (success === 0 && failure === 0) {
+          return 0
+      }
     var uptime = parseFloat(success) / (parseFloat(failure) + parseFloat(success))
     uptime = (uptime.toFixed(2) * 100)
     return uptime
