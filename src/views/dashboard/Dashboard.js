@@ -9,27 +9,40 @@ import {
   CDropdown,
   CDropdownMenu,
   CDropdownItem,
-  CDropdownToggle
+  CDropdownToggle,
+  CModal,
+  CButton,
+  CModalHeader,
+  CModalBody,
+  CModalFooter,
+  CInput,
+  CForm,
+  CInputGroup
 } from '@coreui/react'
 import axios from 'axios'
 import MainChartExample from '../charts/MainChartExample.js'
 import cookie from 'js-cookie'
 
 import CIcon from '@coreui/icons-react'
-import CDataTable from '@coreui/icons-react'
 
 const Dashboard = () => {
   // initial state with array of project information
   let initialProjects = [];
 
+  let initialNewProjectName = "";
+
   // initialize state variables to be empty array of projects
   // projects: array of {'name', 'mostRecentStatus'}
   const [projects, setProjects] = useState(initialProjects)
 
-  const displayProjectFields = [
-    { key: 'projectname', _style: { width: '80%'} },
-    { key: 'numberurls', _style: { width: '20%'} }
-  ]
+  const [modal, setModal] = useState(false)
+  const [error, setError] = useState("");
+  const [newProjectName, setNewProjectName] = useState(initialNewProjectName)
+
+  const toggle = () => {
+    setModal(!modal)
+    setNewProjectName("")
+  }
 
   
   useEffect(() => {
@@ -53,29 +66,111 @@ const Dashboard = () => {
         console.error(errors);
       });
   }, []);
+
+  async function addProject() {
+    console.log(newProjectName)
+    if (newProjectName != "") {
+      const url = 'http://127.0.0.1:5000//users/${userid}/projects?token=${token}'
+      const payload = {
+        "projectname": newProjectName
+      }
+      axios
+        .all([
+          axios.post(url, payload)
+        ])
+        .then()
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+
+  function handleEvent(event) {
+    setError("")
+    const { value } = event.target
+    setNewProjectName(value)
+    console.log(newProjectName)
+  }
   
   return (
-    <><h1>Projects</h1>
-        
-      {projects.map((project) => 
-      <>
-          <div className='individualproject'>
-            <div className='floatleft'>
-              <h5>{project.projectname}</h5>
-            </div>
+    <>
+      <div>
+        <div className='projectDashboardHeader'>
+          <div className='floatright'>
+            <CButton
+              onClick={toggle}
+              color="primary"
+              className="px-4"
+            >Add Project</CButton>
 
-            <div className='floatright'>
-              <h6 className='projectinfodesc'>URL Count</h6>
-              <h6 align='right'>{project.numberurls}</h6>
-            </div>
-            
-            <div className='floatright'>
-              <div className='floatright'></div>
-              <div className='floatright'></div>
-            </div>                                  
+            <CModal
+              show={modal}
+              onClose={toggle}
+            >
+              <CModalBody>
+                <CForm>
+                  <h2>Create a New Project</h2>
+                  <br></br>
+                  <CRow>
+                    <CCol sm="12">
+                      <h6>Project Name</h6>
+                      <CInputGroup>
+                        <CInput
+                          label="Project Name"
+                          placeholder="Enter Project Name"
+                          onChange={handleEvent}
+                          value={newProjectName}
+                        />
+                      </CInputGroup>
+                      <br></br>
+                      <div className='floatright'>
+                        <CButton 
+                          color="primary"
+                          onClick={addProject}
+                        >Add Project</CButton>{'  '}
+                        <CButton
+                          color="secondary"
+                          onClick={toggle}
+                        >Cancel</CButton>
+                      </div>
+                    </CCol>
+                  </CRow>
+                </CForm>
+              </CModalBody>
+              {/* <CModalFooter>
+                <CButton 
+                  color="primary"
+                  onClick={addProject}
+                >Add Project</CButton>{' '}
+                <CButton
+                  color="secondary"
+                  onClick={toggle}
+                >Cancel</CButton>
+              </CModalFooter> */}
+            </CModal>
           </div>
-        </>
-      )}
+          <h1>Projects</h1>
+        </div>
+          
+        <div className='projectDashboardList'>
+          {projects.map((project) => 
+          <>
+              <div className='individualproject'>
+                <div className='floatleft'>
+                  <h5>{project.projectname}</h5>
+                </div>
+
+                <div className='floatright'>
+                  <h6 className='projectinfodesc'>URL Count</h6>
+                  <h6 align='right'>{project.numberurls}</h6>
+                </div>
+                                                
+              </div>
+            </>
+          )}
+        </div>
+
+      </div>
     </>
 
   );
