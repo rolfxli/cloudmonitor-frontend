@@ -99,7 +99,12 @@ const TargetDetails = () => {
        <div className="col-md-6">
         <h4>Response History</h4>
         <div className="chart-wrapper">
-          <CChart type="line" datasets={responseTimes.datasets} options={options} />
+          {/* <CChart type="line" datasets={responseTimes.datasets} options={options} /> */}
+          <CChartLine
+            datasets={responseTimes.datasets}
+            options={options}
+            labels={timeStamps}
+          />
         </div>
         <hr />
       </div>
