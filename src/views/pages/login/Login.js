@@ -20,6 +20,9 @@ import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import {handleLogin} from '../../../utils/auth'
 
+import Header from '../../../components/layout/Header'
+import '../../../assets/scss/style.scss'
+
 
 const Login = () => {
   
@@ -66,23 +69,22 @@ const Login = () => {
 
   }
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    <>
+    <Header></Header>
+    <br></br>
+    <div className="hero section center-content illustration-section-01r" style={{marginTop: "15%"}}>
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard>
                 <CCardBody>
                   <CForm>
                     <h2>Login to view Dashboard</h2>
                     <br></br>
-                    Client Token
+                    <h6 color='white'>Email
+                      </h6>
                     <CInputGroup className="mb-3">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-user" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
                       <CInput
                         type="email"
                         name="email"
@@ -92,8 +94,11 @@ const Login = () => {
                       />
 
                     </CInputGroup>
+                    <h6 color='white'>Password
+                      </h6> 
                     <CInputGroup>
-                    <CInput
+               
+                      <CInput
                         type="password"
                         name = "password"
                         placeholder="Password"
@@ -102,6 +107,7 @@ const Login = () => {
                         value={logininfo.password}
                       />
                     </CInputGroup>
+                    <br></br>
                     <CButton
                       onClick={handleSubmit}
                       color="primary"
@@ -135,6 +141,7 @@ const Login = () => {
         </CRow>
       </CContainer>
     </div>
+    </>
   );
 };
 

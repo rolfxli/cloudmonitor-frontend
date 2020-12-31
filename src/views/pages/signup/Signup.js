@@ -20,6 +20,9 @@ import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import {handleLogin} from '../../../utils/auth'
 
+import Header from '../../../components/layout/Header'
+import '../../../assets/scss/style.scss'
+
 
 const Signup = () => {
   
@@ -66,22 +69,22 @@ const Signup = () => {
 
   }
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+      <>
+      <Header></Header>
+    <br></br>
+    <div className="hero section center-content illustration-section-01r" style={{marginTop: "15%"}}>
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard>
                 <CCardBody>
                   <CForm>
-                    <h2>Sign Up for an Account</h2>
+                    <h2>Sign Up for your Account</h2>
                     <br></br>
+                    <h6 color='white'>Email
+                      </h6>
                     <CInputGroup className="mb-3">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-user" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
                       <CInput
                         type="email"
                         name="email"
@@ -91,8 +94,11 @@ const Signup = () => {
                       />
 
                     </CInputGroup>
+                    <h6 color='white'>Password
+                      </h6> 
                     <CInputGroup>
-                    <CInput
+               
+                      <CInput
                         type="password"
                         name = "password"
                         placeholder="Password"
@@ -101,12 +107,13 @@ const Signup = () => {
                         value={signupinfo.password}
                       />
                     </CInputGroup>
+                    <br></br>
                     <CButton
                       onClick={handleSubmit}
                       color="primary"
                       className="px-4"
                     >
-                      Login
+                      Sign Up
                     </CButton>
                     <br></br><br></br>
                     {error && (
@@ -134,6 +141,7 @@ const Signup = () => {
         </CRow>
       </CContainer>
     </div>
+    </>
   );
 };
 

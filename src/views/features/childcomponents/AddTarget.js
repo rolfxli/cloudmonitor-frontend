@@ -110,12 +110,17 @@ const AddTarget = ({ visible, projectid, closemodal, addnewtarget }) => {
       const payload = {
         link: newtarget.link,
         testtype: "API Test",
-        requestheaders: JSON.stringify(newtarget.headers),
-        requestbody: JSON.stringify(newtarget.body),
         requesttype: newtarget.requesttype,
       };
-      console.log("POAYLOD")
-      console.log(payload)
+
+      if (newtarget.headers !== "" && newtarget.headers !== null) {
+        payload.requestheaders = JSON.stringify(newtarget.headers);
+      }
+
+      if (newtarget.body !== "" && newtarget.body !== null) {
+        payload.requestbody = JSON.stringify(newtarget.body);
+      }
+
       try {
         let newtarget = (await axios.post(url, payload)).data;
         addnewtarget(newtarget);

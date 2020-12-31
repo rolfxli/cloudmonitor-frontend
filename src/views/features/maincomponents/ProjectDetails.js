@@ -137,7 +137,7 @@ const ProjectDetails = () => {
           var total = 0;
           for (let i = 0; i < targets.length; i++) {
             total += 1;
-            if (targets[i].mostrecentstatus === "FAILURE") {
+            if (targets[i].mostrecentstatus === "FAIL") {
               total_fail += 1;
             }
           }
@@ -214,7 +214,7 @@ const ProjectDetails = () => {
 
           <div style={{ paddingBottom: "30px" }}>
             <div className="headerleft">
-              <h3>Showing All Targets</h3>
+              <h3>Showing All APIs</h3>
             </div>
             <div className="headerright">
               <CButton onClick={() => setVisible(true)} color="primary">
