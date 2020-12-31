@@ -4,7 +4,7 @@ import { CChart, CChartLine } from "@coreui/react-chartjs";
 import axios from "axios";
 import cookie from "js-cookie";
 
-import { CContainer, CLabel, CInput, CSelect, CButton } from "@coreui/react";
+import { CContainer, CLabel, CSpinner, CInput, CSelect, CButton } from "@coreui/react";
 
 import JSONInput from "react-json-editor-ajrm";
 
@@ -43,7 +43,7 @@ const TargetDetails = () => {
   const [timeStamps, setTimeStamps] = useState([]);
   const [target, setTarget] = useState(initialTarget);
   const [validity, setValidity] = useState(initvalidity);
-
+  const [loading, setLoading] = useState(true)
   const [header, setHeader] = useState({});
   const [body, setBody] = useState({});
 
@@ -61,15 +61,28 @@ const TargetDetails = () => {
       ])
       .then(
         axios.spread((res, targetinfo) => {
+
+            console.log(res.data)
           setTarget(targetinfo.data);
-          setHeader(JSON.parse(JSON.parse(targetinfo.data.requestheaders)));
-          setBody(JSON.parse(JSON.parse(targetinfo.data.requestbody)));
           setResponseHistory(res.data);
           filterResponseTimes(res.data);
+        
+          var requestheaderjson = targetinfo.data.requestheaders
+          if (requestheaderjson !== "" && requestheaderjson !== null) {
+            setHeader(JSON.parse(JSON.parse(requestheaderjson)));
+          }
+          
+          var requestbodyjson = targetinfo.data.requestbody
+          if (requestbodyjson !== "" && requestbodyjson !== null) {
+            setBody(JSON.parse(JSON.parse(requestbodyjson)));
+          }
+
+          setLoading(false)
         })
       )
       .catch((err) => {
         console.log(err);
+        setLoading(false)
       });
   }, []);
 
@@ -87,11 +100,36 @@ const TargetDetails = () => {
   }
 
   const options = {
-    // tooltips: {
-    //   enabled: false,
-    //   custom: customTooltips
-    // },
     maintainAspectRatio: false,
+    animation: {
+        duration: 0
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            drawOnChartArea: false
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5,
+          },
+          gridLines: {
+            display: true
+          }
+        }]
+      },
+      elements: {
+          
+        line: { tension: 0.00001 },
+        point: {
+          radius: 100,
+          hitRadius: 10,
+          hoverRadius: 4,
+          hoverBorderWidth: 3
+        }
+      }
   };
 
   const responseTimes = {
@@ -217,6 +255,22 @@ const TargetDetails = () => {
 
   return (
     <>
+    {loading ? (
+        <center>
+          {" "}
+          <CSpinner
+            className="loadingspinner"
+            style={{
+              width: "4rem",
+              height: "4rem",
+              marginTop: "20%",
+              marginBottom: "20%",
+            }}
+            color="success"
+            variant="grow"
+          />
+        </center>
+      ) : (
       <div>
         <h4>Response History</h4>
         {/* <CChart type="line" datasets={responseTimes.datasets} options={options} /> */}
@@ -226,10 +280,10 @@ const TargetDetails = () => {
           labels={timeStamps}
         />
 
-        <div className="chart-wrapper">
+        <div className="chart-wrapper mt-1">
           <CContainer>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-6" style={{paddingTop: "30px"}}>
                 <CLabel>Url Link</CLabel>
                 <CInput
                   type="text"
@@ -296,6 +350,7 @@ const TargetDetails = () => {
         </div>
         <hr />
       </div>
+      )}
     </>
   );
 };

@@ -201,7 +201,7 @@ const ProjectDetails = () => {
             <CCol sm="4" lg="3">
               <CWidgetSimple
                 header="Number of Targets"
-                text={total.toString()}
+                text={targets.length.toString()}
               ></CWidgetSimple>
             </CCol>
             <CCol sm="4" lg="3">
