@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect} from 'react';
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';

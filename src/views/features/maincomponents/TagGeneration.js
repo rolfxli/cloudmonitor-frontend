@@ -1,17 +1,4 @@
-import React, { useState } from "react";
-import {
-  CRow,
-  CCol,
-  CContainer,
-  CInput,
-  CButton,
-  CForm,
-  CSpinner,
-  CInputGroup,
-  CInputGroupAppend,
-} from "@coreui/react";
-
-import axios from "axios";
+import React from "react";
 
 const TagGeneration = () => {
 

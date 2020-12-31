@@ -1,26 +1,16 @@
-import React, { useEffect, Component, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  CCard,
-  CCardBody,
   CCol,
   CSpinner,
   CRow,
-  CWidgetDropdown,
-  CDropdown,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownToggle,
   CModal,
   CButton,
-  CModalHeader,
   CModalBody,
-  CModalFooter,
   CInput,
   CForm,
   CInputGroup
 } from '@coreui/react'
 import axios from 'axios'
-import MainChartExample from '../charts/MainChartExample.js'
 import cookie from 'js-cookie'
 
 import CIcon from '@coreui/icons-react'
@@ -39,7 +29,6 @@ const Dashboard = () => {
   const [projects, setProjects] = useState(initialProjects)
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false)
-  const [error, setError] = useState("");
   const [newProjectName, setNewProjectName] = useState(initialNewProjectName)
 
   const toggle = () => {
@@ -79,7 +68,7 @@ const Dashboard = () => {
     console.log(newProjectName)
     var token = cookie.get('token')
     var userid = cookie.get('userid')
-    if (newProjectName != "") {
+    if (newProjectName !== "") {
       const url = `http://127.0.0.1:5000/users/${userid}/projects?token=${token}`
       const payload = {
         "projectname": newProjectName
@@ -119,12 +108,7 @@ const Dashboard = () => {
     event.stopPropagation()
   }
 
-  function expandProject(projectid) {
-
-  }
-
   function handleEvent(event) {
-    setError("")
     const { value } = event.target
     setNewProjectName(value)
     console.log(newProjectName)

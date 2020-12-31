@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { CChart, CChartLine } from "@coreui/react-chartjs";
+import { useParams } from "react-router-dom";
+import { CChartLine } from "@coreui/react-chartjs";
 import axios from "axios";
 import cookie from "js-cookie";
 
@@ -23,7 +23,6 @@ const TargetDetails = () => {
     requesttype: "",
   };
   const { projectid, targetid } = useParams();
-  const history = useHistory();
 
   var requesttypes = [
     { name: "GET", value: "GET" },
@@ -38,7 +37,6 @@ const TargetDetails = () => {
     body: true,
   };
 
-  const [responseHistory, setResponseHistory] = useState([]);
   const [responses, setResponses] = useState([]);
   const [timeStamps, setTimeStamps] = useState([]);
   const [target, setTarget] = useState(initialTarget);
@@ -64,7 +62,6 @@ const TargetDetails = () => {
 
             console.log(res.data)
           setTarget(targetinfo.data);
-          setResponseHistory(res.data);
           filterResponseTimes(res.data);
         
           var requestheaderjson = targetinfo.data.requestheaders
@@ -92,7 +89,7 @@ const TargetDetails = () => {
         console.log(err);
         setLoading(false)
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // set the ping times
   function filterResponseTimes(data) {

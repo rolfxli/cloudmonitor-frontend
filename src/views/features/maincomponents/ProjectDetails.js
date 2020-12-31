@@ -3,16 +3,9 @@ import {
   CRow,
   CCol,
   CContainer,
-  CInput,
   CButton,
   CWidgetSimple,
-  CForm,
-  CModal,
   CSpinner,
-  CInputGroup,
-  CInputGroupAppend,
-  CModalHeader,
-  CModalBody,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
@@ -113,6 +106,7 @@ const ProjectDetails = () => {
     });
 
     setTargets(newtargetarray);
+    console.log(total)
   }
 
   useEffect(() => {
@@ -157,7 +151,7 @@ const ProjectDetails = () => {
         history.push("/dashboard");
         setLoading(false);
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

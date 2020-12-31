@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import {
-  CRow,
-  CCol,
-  CContainer,
   CInput,
   CButton,
-  CForm,
-  CSpinner,
-  CInputGroup,
-  CInputGroupAppend,
   CLabel,
   CSelect,
   CModal,
@@ -43,7 +36,6 @@ const AddTarget = ({ visible, projectid, closemodal, addnewtarget }) => {
   };
 
   const [newtarget, setNewtarget] = useState(initialnewtarget);
-  const [disabled, setDisabled] = useState(true);
   const [validity, setValidity] = useState(initvalidity);
 
   function handleEventHeaders(event) {
