@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   CButton,
   CCard,
@@ -45,7 +45,7 @@ const Signup = () => {
   async function handleSubmit() {
     setError("")
     setLoading(true)
-    if (signupinfo.email !== "" && signupinfo.password != "") {
+    if (signupinfo.email !== "" && signupinfo.password !== "") {
       const url = 'http://127.0.0.1:5000/users/signup'
       const payload = {
         "email": signupinfo.email,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { CChart, CChartLine } from "@coreui/react-chartjs";
+import { useParams } from "react-router-dom";
+import { CChartLine } from "@coreui/react-chartjs";
 import axios from "axios";
 import cookie from "js-cookie";
 
@@ -23,7 +23,6 @@ const TargetDetails = () => {
     requesttype: "",
   };
   const { projectid, targetid } = useParams();
-  const history = useHistory();
 
   var requesttypes = [
     { name: "GET", value: "GET" },

@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import {
-  CRow,
-  CCol,
-  CContainer,
   CInput,
   CButton,
-  CForm,
-  CSpinner,
-  CInputGroup,
-  CInputGroupAppend,
   CLabel,
   CSelect,
   CModal,

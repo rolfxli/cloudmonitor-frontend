@@ -1,26 +1,16 @@
 import React, { useEffect, Component, useState } from 'react'
 import {
-  CCard,
-  CCardBody,
   CCol,
   CSpinner,
   CRow,
-  CWidgetDropdown,
-  CDropdown,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownToggle,
   CModal,
   CButton,
-  CModalHeader,
   CModalBody,
-  CModalFooter,
   CInput,
   CForm,
   CInputGroup
 } from '@coreui/react'
 import axios from 'axios'
-import MainChartExample from '../charts/MainChartExample.js'
 import cookie from 'js-cookie'
 
 import CIcon from '@coreui/icons-react'
@@ -79,7 +69,7 @@ const Dashboard = () => {
     console.log(newProjectName)
     var token = cookie.get('token')
     var userid = cookie.get('userid')
-    if (newProjectName != "") {
+    if (newProjectName !== "") {
       const url = `http://127.0.0.1:5000/users/${userid}/projects?token=${token}`
       const payload = {
         "projectname": newProjectName

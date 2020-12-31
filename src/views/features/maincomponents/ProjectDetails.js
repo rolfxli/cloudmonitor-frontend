@@ -3,16 +3,9 @@ import {
   CRow,
   CCol,
   CContainer,
-  CInput,
   CButton,
   CWidgetSimple,
-  CForm,
-  CModal,
   CSpinner,
-  CInputGroup,
-  CInputGroupAppend,
-  CModalHeader,
-  CModalBody,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
