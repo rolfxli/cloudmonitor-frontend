@@ -106,6 +106,7 @@ const ProjectDetails = () => {
     });
 
     setTargets(newtargetarray);
+    console.log(total)
   }
 
   useEffect(() => {
@@ -150,7 +151,7 @@ const ProjectDetails = () => {
         history.push("/dashboard");
         setLoading(false);
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

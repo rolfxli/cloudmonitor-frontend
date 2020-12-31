@@ -1,4 +1,4 @@
-import React, { useEffect, Component, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CCol,
   CSpinner,
@@ -29,7 +29,6 @@ const Dashboard = () => {
   const [projects, setProjects] = useState(initialProjects)
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false)
-  const [error, setError] = useState("");
   const [newProjectName, setNewProjectName] = useState(initialNewProjectName)
 
   const toggle = () => {
@@ -109,12 +108,7 @@ const Dashboard = () => {
     event.stopPropagation()
   }
 
-  function expandProject(projectid) {
-
-  }
-
   function handleEvent(event) {
-    setError("")
     const { value } = event.target
     setNewProjectName(value)
     console.log(newProjectName)

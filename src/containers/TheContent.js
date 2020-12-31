@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useSelector, useEffect } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import {
   Redirect,
   Route,
@@ -10,7 +10,6 @@ import axios from 'axios'
 // routes config
 import routes from '../routes'
 
-import {validate_token} from '../utils/auth'
 import cookie from 'js-cookie'
   
 const loading = (

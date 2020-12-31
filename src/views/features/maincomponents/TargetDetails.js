@@ -37,7 +37,6 @@ const TargetDetails = () => {
     body: true,
   };
 
-  const [responseHistory, setResponseHistory] = useState([]);
   const [responses, setResponses] = useState([]);
   const [timeStamps, setTimeStamps] = useState([]);
   const [target, setTarget] = useState(initialTarget);
@@ -63,7 +62,6 @@ const TargetDetails = () => {
 
             console.log(res.data)
           setTarget(targetinfo.data);
-          setResponseHistory(res.data);
           filterResponseTimes(res.data);
         
           var requestheaderjson = targetinfo.data.requestheaders
@@ -83,7 +81,7 @@ const TargetDetails = () => {
         console.log(err);
         setLoading(false)
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // set the ping times
   function filterResponseTimes(data) {

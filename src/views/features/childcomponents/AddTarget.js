@@ -36,7 +36,6 @@ const AddTarget = ({ visible, projectid, closemodal, addnewtarget }) => {
   };
 
   const [newtarget, setNewtarget] = useState(initialnewtarget);
-  const [disabled, setDisabled] = useState(true);
   const [validity, setValidity] = useState(initvalidity);
 
   function handleEventHeaders(event) {
