@@ -77,7 +77,7 @@ const ProjectDetails = () => {
     // Get all details for the project
     axios
       .delete(
-        `http://127.0.0.1:5000/projects/${projectid}/targets/${urlid}?token=${token}`
+        `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${urlid}?token=${token}`
       )
       .then(
         setTargets(
@@ -115,11 +115,11 @@ const ProjectDetails = () => {
     axios
       .all([
         // Get all details for the project
-        axios.get(`http://127.0.0.1:5000/projects/${projectid}?token=${token}`),
+        axios.get(`${process.env.REACT_APP_BASEURL}projects/${projectid}?token=${token}`),
 
         // Get all targets for the project
         axios.get(
-          `http://127.0.0.1:5000/projects/${projectid}/targets?token=${token}`
+          `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets?token=${token}`
         ),
       ])
       .then(

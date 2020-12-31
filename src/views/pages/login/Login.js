@@ -46,7 +46,7 @@ const Login = () => {
     setError("")
     setLoading(true)
     if (logininfo.email !== "" && logininfo.password !== "") {
-      const url = 'http://127.0.0.1:5000/users/login'
+      const url = `${process.env.REACT_APP_BASEURL}users/login`
       const payload = {
         "email": logininfo.email,
         "password": logininfo.password

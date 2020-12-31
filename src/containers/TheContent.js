@@ -32,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           axios
           .all([
             axios.get(
-              `http://127.0.0.1:5000/users/get_user_by_token?token=${token}`
+              `${process.env.REACT_APP_BASEURL}users/get_user_by_token?token=${token}`
             )
           ])
           .then(

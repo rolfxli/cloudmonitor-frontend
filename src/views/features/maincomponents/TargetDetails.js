@@ -51,10 +51,10 @@ const TargetDetails = () => {
     axios
       .all([
         axios.get(
-          `http://127.0.0.1:5000/targets/responses/${targetid}?token=${token}`
+          `${process.env.REACT_APP_BASEURL}targets/responses/${targetid}?token=${token}`
         ),
         axios.get(
-          `http://127.0.0.1:5000/projects/${projectid}/targets/${targetid}?token=${token}`
+          `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${targetid}?token=${token}`
         ),
       ])
       .then(
@@ -228,7 +228,7 @@ const TargetDetails = () => {
   async function handleSubmit() {
     const token = cookie.get("token");
     if (token) {
-      const url = `http://127.0.0.1:5000/projects/${projectid}/targets/${targetid}?token=${token}`;
+      const url = `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${targetid}?token=${token}`;
       const payload = {
         link: target.link,
         testtype: "API Test",

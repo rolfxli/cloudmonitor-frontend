@@ -98,7 +98,7 @@ const AddTarget = ({ visible, projectid, closemodal, addnewtarget }) => {
   async function handleSubmit() {
     const token = cookie.get("token");
     if (token) {
-      const url = `http://127.0.0.1:5000/projects/${projectid}/targets?token=${token}`;
+      const url = `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets?token=${token}`;
       const payload = {
         link: newtarget.link,
         testtype: "API Test",

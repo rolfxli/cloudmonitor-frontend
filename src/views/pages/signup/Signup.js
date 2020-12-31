@@ -46,7 +46,7 @@ const Signup = () => {
     setError("")
     setLoading(true)
     if (signupinfo.email !== "" && signupinfo.password !== "") {
-      const url = 'http://127.0.0.1:5000/users/signup'
+      const url = `${process.env.REACT_APP_BASEURL}users/signup`
       const payload = {
         "email": signupinfo.email,
         "password": signupinfo.password
