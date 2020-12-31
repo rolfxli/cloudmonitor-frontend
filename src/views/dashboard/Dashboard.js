@@ -49,7 +49,7 @@ const Dashboard = () => {
       .all([
         // retrieve all projects for the user
         axios.get(
-          `http://127.0.0.1:5000/users/${userid}/projects?token=${token}`
+          `${process.env.REACT_APP_BASEURL}users/${userid}/projects?token=${token}`
         )
       ])
       .then(
@@ -69,7 +69,7 @@ const Dashboard = () => {
     var token = cookie.get('token')
     var userid = cookie.get('userid')
     if (newProjectName !== "") {
-      const url = `http://127.0.0.1:5000/users/${userid}/projects?token=${token}`
+      const url = `${process.env.REACT_APP_BASEURL}users/${userid}/projects?token=${token}`
       const payload = {
         "projectname": newProjectName
       }
@@ -94,7 +94,7 @@ const Dashboard = () => {
   function deleteProject(event, projectid) {
     const token = cookie.get('token')
     // delete the project
-    axios.delete(`http://127.0.0.1:5000/projects/${projectid}?token=${token}`)
+    axios.delete(`${process.env.REACT_APP_BASEURL}projects/${projectid}?token=${token}`)
     .then(
       setProjects(projects.filter(
           function(project) { 

@@ -77,7 +77,7 @@ const ProjectDetails = () => {
     // Get all details for the project
     axios
       .delete(
-        `http://127.0.0.1:5000/projects/${projectid}/targets/${urlid}?token=${token}`
+        `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${urlid}?token=${token}`
       )
       .then(
         setTargets(
@@ -115,11 +115,11 @@ const ProjectDetails = () => {
     axios
       .all([
         // Get all details for the project
-        axios.get(`http://127.0.0.1:5000/projects/${projectid}?token=${token}`),
+        axios.get(`${process.env.REACT_APP_BASEURL}projects/${projectid}?token=${token}`),
 
         // Get all targets for the project
         axios.get(
-          `http://127.0.0.1:5000/projects/${projectid}/targets?token=${token}`
+          `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets?token=${token}`
         ),
       ])
       .then(
@@ -131,7 +131,7 @@ const ProjectDetails = () => {
           var total = 0;
           for (let i = 0; i < targets.length; i++) {
             total += 1;
-            if (targets[i].mostrecentstatus === "FAILURE") {
+            if (targets[i].mostrecentstatus === "FAIL") {
               total_fail += 1;
             }
           }
@@ -208,7 +208,7 @@ const ProjectDetails = () => {
 
           <div style={{ paddingBottom: "30px" }}>
             <div className="headerleft">
-              <h3>Showing All Targets</h3>
+              <h3>Showing All APIs</h3>
             </div>
             <div className="headerright">
               <CButton onClick={() => setVisible(true)} color="primary">

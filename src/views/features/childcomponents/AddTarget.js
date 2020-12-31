@@ -98,16 +98,21 @@ const AddTarget = ({ visible, projectid, closemodal, addnewtarget }) => {
   async function handleSubmit() {
     const token = cookie.get("token");
     if (token) {
-      const url = `http://127.0.0.1:5000/projects/${projectid}/targets?token=${token}`;
+      const url = `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets?token=${token}`;
       const payload = {
         link: newtarget.link,
         testtype: "API Test",
-        requestheaders: JSON.stringify(newtarget.headers),
-        requestbody: JSON.stringify(newtarget.body),
         requesttype: newtarget.requesttype,
       };
-      console.log("POAYLOD")
-      console.log(payload)
+
+      if (newtarget.headers !== "" && newtarget.headers !== null) {
+        payload.requestheaders = JSON.stringify(newtarget.headers);
+      }
+
+      if (newtarget.body !== "" && newtarget.body !== null) {
+        payload.requestbody = JSON.stringify(newtarget.body);
+      }
+
       try {
         let newtarget = (await axios.post(url, payload)).data;
         addnewtarget(newtarget);

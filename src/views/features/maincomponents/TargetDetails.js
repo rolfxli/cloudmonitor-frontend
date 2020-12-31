@@ -51,10 +51,10 @@ const TargetDetails = () => {
     axios
       .all([
         axios.get(
-          `http://127.0.0.1:5000/targets/responses/${targetid}?token=${token}`
+          `${process.env.REACT_APP_BASEURL}targets/responses/${targetid}?token=${token}`
         ),
         axios.get(
-          `http://127.0.0.1:5000/projects/${projectid}/targets/${targetid}?token=${token}`
+          `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${targetid}?token=${token}`
         ),
       ])
       .then(
@@ -67,11 +67,19 @@ const TargetDetails = () => {
           var requestheaderjson = targetinfo.data.requestheaders
           if (requestheaderjson !== "" && requestheaderjson !== null) {
             setHeader(JSON.parse(JSON.parse(requestheaderjson)));
-          }
+            setTarget((preState) => ({
+                ...preState,
+                requestheaders: JSON.parse(requestheaderjson),
+              }));
+        }
           
           var requestbodyjson = targetinfo.data.requestbody
           if (requestbodyjson !== "" && requestbodyjson !== null) {
             setBody(JSON.parse(JSON.parse(requestbodyjson)));
+            setTarget((preState) => ({
+                ...preState,
+                requestbody: JSON.parse(requestbodyjson),
+              }));
           }
 
           setLoading(false)
@@ -167,6 +175,8 @@ const TargetDetails = () => {
         ...preState,
         requestheaders: event.json,
       }));
+      console.log(event.json)
+      console.log(typeof(event.json))
       setValidity((preState) => ({
         ...preState,
         headers: true,
@@ -218,22 +228,18 @@ const TargetDetails = () => {
   async function handleSubmit() {
     const token = cookie.get("token");
     if (token) {
-      const url = `http://127.0.0.1:5000/projects/${projectid}/targets/${targetid}?token=${token}`;
+      const url = `${process.env.REACT_APP_BASEURL}projects/${projectid}/targets/${targetid}?token=${token}`;
       const payload = {
         link: target.link,
         testtype: "API Test",
         requesttype: target.requesttype,
       };
 
-      if (target.requestheaders === "" || target.requestheaders === "\"\"") {
-        payload.requestheaders = "";
-      } else {
+      if (target.requestheaders !== "" && target.requestheaders !== null) {
         payload.requestheaders = JSON.stringify(target.requestheaders);
       }
 
-      if (target.requestbody === "" || target.requestbody === "\"\"") {
-        payload.requestbody = "";
-      } else {
+      if (target.requestbody !== "" || target.requestbody !== null) {
         payload.requestbody = JSON.stringify(target.requestbody);
       }
 
@@ -290,7 +296,7 @@ const TargetDetails = () => {
                   placeholder="Eg. https://reqres.in/api/products/4"
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" style={{paddingTop: "30px"}}>
                 <CLabel>Request Type</CLabel>
                 <CSelect
                   onChange={handleEvent}
@@ -305,7 +311,7 @@ const TargetDetails = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-6" >
                 <CLabel>Headers (Enter a valid JSON object)</CLabel>
                 <JSONInput
                   placeholder={header}

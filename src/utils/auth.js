@@ -24,7 +24,7 @@ export function validate_token(token, userid) {
 
     return axios({
         method: 'get',
-        url: `http://127.0.0.1:5000/users/get_user_by_token?token=${token}`
+        url: `${process.env.REACT_APP_BASEURL}users/get_user_by_token?token=${token}`
     })
     .then(response => {
         const data = response.data;
