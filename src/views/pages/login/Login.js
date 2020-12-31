@@ -11,12 +11,9 @@ import {
   CAlert,
   CInput,
   CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
   CRow,
   CSpinner,
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import {handleLogin} from '../../../utils/auth'
 

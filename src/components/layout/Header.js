@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect} from 'react';
-import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -35,7 +34,6 @@ const Header = ({
 
   const nav = useRef(null);
   const hamburger = useRef(null);
-  const history = useHistory();
 
   useEffect(() => {
     isActive && openMenu();
@@ -76,13 +74,6 @@ const Header = ({
     className
   );
 
-  function goToLogin() {
-    history.push('/login')
-  }
-
-  function goToSignup() {
-    history.push('/signup')
-  }
 
   return (
     <header
