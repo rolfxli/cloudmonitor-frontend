@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   CButton,
   CCard,
@@ -45,7 +45,7 @@ const Login = () => {
   async function handleSubmit() {
     setError("")
     setLoading(true)
-    if (logininfo.email !== "" && logininfo.password != "") {
+    if (logininfo.email !== "" && logininfo.password !== "") {
       const url = 'http://127.0.0.1:5000/users/login'
       const payload = {
         "email": logininfo.email,
@@ -53,7 +53,7 @@ const Login = () => {
       }
       try {
         var result = (await axios.post(url, payload)).data
-        handleLogin(result.token)
+        handleLogin(result.token, result.userid, result.email)
         history.push('/dashboard')
       }
       catch(err) {

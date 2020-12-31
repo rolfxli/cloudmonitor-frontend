@@ -6,3 +6,81 @@
 
 // If you want to add something do it here
 @import "custom";
+
+.individualproject {
+    cursor: pointer;
+    background-color: rgb(26, 25, 23) !important;
+    padding: 30px;
+    margin-top: 22px;
+    padding-bottom: 58px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgb(255, 255, 255); 
+    box-shadow: 0px 1px 4px 0px rgba(255, 255, 255, 0.863);
+}
+
+.individualprojectdashboard {
+    cursor: pointer;
+    background-color: rgb(26, 25, 23) !important;
+    padding: 30px;
+    margin-top: 22px;
+    padding-bottom: 70px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgb(255, 255, 255); 
+    box-shadow: 0px 1px 4px 0px rgba(255, 255, 255, 0.863);
+}
+
+
+
+.card {
+    background-color: rgb(26, 25, 23) !important;
+}
+
+.c-main {
+    background-color: black !important;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Nunito Sans", sans-serif !important;
+
+    color: rgb(147, 200, 209) !important;
+}
+
+.h2 {
+    color: rgb(147, 200, 209) !important;
+    
+}
+
+.floatleft {
+    float: left;
+}
+.floatright{
+    margin-right: 20px;
+    vertical-align: middle;
+    float: right;
+}
+
+.statusbutton {
+    border-radius: 17px;
+}
+
+.projectinfo {
+    color: rgb(147, 200, 209) !important;
+
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.projectinfodesc {
+    color: rgb(93, 124, 129) !important;
+}
+
+.headerleft {
+    float:left;
+}
+.headerright {
+    float:right;
+}
+
+
+.chart-wrapper {
+    background-color: white !important;
+}

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import {
   Redirect,
   Route,
@@ -6,9 +6,11 @@ import {
 } from 'react-router-dom'
 import { CContainer } from '@coreui/react'
 
+import axios from 'axios'
 // routes config
 import routes from '../routes'
 
+import cookie from 'js-cookie'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -20,12 +22,53 @@ const loading = (
 
 
 
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null)  
+  useEffect(() => {
+    let token = cookie.get('token')
+    let userid = cookie.get('userid')
+        if(token){
 
+          axios
+          .all([
+            axios.get(
+              `http://127.0.0.1:5000/users/get_user_by_token?token=${token}`
+            )
+          ])
+          .then(
+            axios.spread((info) => {
+              console.log(info.data)
+              if (parseInt(info.data.userid) !== parseInt(userid)) {
+                setIsAuthenticated(false)
+              }
+              setIsAuthenticated(true)
+            })
+          )
+          .catch((errors) => {
+            setIsAuthenticated(false)
+          });
+        }
+        else {
+          setIsAuthenticated(false)
+        }
+    // eslint-disable-next-line
+  }, [])
 
-const PrivateRoute = ({ component: Component, name, ...rest }) => (
-  <Route {...rest} render={(props) => (<Component {...props} />
-  )} />
-)
+  if(isAuthenticated === null){
+    return <></>
+  }
+
+  return (
+    <Route {...rest} render={props =>
+      !isAuthenticated ? (
+        <Redirect to='/login'/>
+      ) : (
+        <Component {...props} />
+      )
+    }
+    />
+  );
+};
 
 
 
